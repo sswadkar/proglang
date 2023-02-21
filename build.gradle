@@ -11,4 +11,5 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "guru.zoroark.lixy:lixy-jvm:1.0.0"
 }
