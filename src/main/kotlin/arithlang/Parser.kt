@@ -16,6 +16,7 @@ class Parser(private val tokens: MutableList<Token>) {
 
             if (isOperator(nextSymbol.tokenType)){
                 currentSymbol = nextSymbol.tokenType
+                tokenIterator.next()
                 nodes.add(extractExpression())
             }
         }
@@ -24,16 +25,16 @@ class Parser(private val tokens: MutableList<Token>) {
     }
 
     private fun lookAhead(): Token?{
-        return tokens[tokenIterator.nextIndex()]
+        return tokens.getOrNull(tokenIterator.nextIndex())
     }
 
     private fun extractExpression(): Node {
-        var lhs : Node = Node.UnaryNode(TokenType.INT, tokenIterator.next())
+        var lhs : Node = Node.UnaryNode(TokenType.INT, tokens[tokenIterator.nextIndex()-1])
         val nextToken = lookAhead()
 
-        while (nextToken?.tokenType == TokenType.INT){
+        while (nextToken?.tokenType == TokenType.INT && (tokens.size - tokenIterator.nextIndex()) > 1){
+            tokenIterator.next()
             val recursiveNodeConstruction = extractExpression()
-
             lhs = Node.CompoundExp(currentSymbol, lhs, recursiveNodeConstruction)
         }
 

@@ -4,7 +4,14 @@ import arithlang.lexer.Token
 import arithlang.lexer.TokenType
 
 sealed class Node {
-    // using varargs allows us to create compounded arithmetic expressions
-    class CompoundExp(val symbol: TokenType, vararg nodes: Node): Node() {}
-    class UnaryNode(val type: TokenType, val value: Token): Node() {}
+    class CompoundExp(val symbol: TokenType, val lhs: Node, val rhs: Node): Node() {
+        override fun toString(): String {
+            return "CompoundExp(symbol:${symbol}, left hand side:${lhs}, right hand side:${rhs})"
+        }
+    }
+    class UnaryNode(val type: TokenType, val value: Token): Node() {
+        override fun toString(): String {
+            return "UnaryNode(type:${type}, value:${value})"
+        }
+    }
 }

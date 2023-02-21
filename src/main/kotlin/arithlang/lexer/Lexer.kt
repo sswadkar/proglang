@@ -5,11 +5,11 @@ import java.util.*
 class Lexer(private var stringToBeTokenized: String = "") {
     var tokens = mutableListOf<Token>()
 
-    private val textIterator: ListIterator<Char>
-        get() = stringToBeTokenized.toList().listIterator()
+    private var textIterator: ListIterator<Char> = stringToBeTokenized.toList().listIterator()
 
     fun add(stringToBeTokenized: String){
         this.stringToBeTokenized += stringToBeTokenized
+        textIterator = this.stringToBeTokenized.toList().listIterator()
     }
 
     private fun lookAhead(): Char?{
