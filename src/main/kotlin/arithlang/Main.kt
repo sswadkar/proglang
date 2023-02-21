@@ -5,7 +5,7 @@ import arithlang.lexer.Token
 import java.io.File
 
 fun main() {
-    val bufferedReader = File("src/main/kotlin/arithlang/test.al").bufferedReader()
+    val bufferedReader = File("src/main/kotlin/arithlang/test.jit").bufferedReader()
     val text = bufferedReader.use { it.readText() }
     Token.parsedText = text
     val tokens = Lexer(text).tokenize()
