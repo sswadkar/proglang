@@ -14,8 +14,8 @@ class Parser(private val tokens: MutableList<Token>) {
         while (tokenIterator.hasNext()) {
             val nextSymbol = tokenIterator.next()
 
-            if (isOperator(nextSymbol.tokenType)){
-                currentSymbol = nextSymbol.tokenType
+            if (nextSymbol.tokenType == TokenType.OPEN_PAREN){
+                currentSymbol = tokenIterator.next().tokenType
                 tokenIterator.next()
                 nodes.add(extractExpression())
             }
