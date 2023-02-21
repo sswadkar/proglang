@@ -1,6 +1,7 @@
 package arithlang
 
+import arithlang.lexer.TokenType
+
 sealed class Node {
-    data class TokenNode(val name: String, val children: MutableList<Node>): Node() {}
-    data class ValueNode(val name: String, val children: MutableList<Node>): Node() {}
+    class Exp(val symbol: TokenType, vararg nodes: Node): Node() {}
 }
